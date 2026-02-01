@@ -17,6 +17,11 @@ export default function Home() {
             description="質問や問い合わせはこちら"
           />
           <LinkCard
+            href="/dataList"
+            title="データリスト"
+            description="データ一覧を表示するサンプルページ"
+          />
+          <LinkCard
             href="https://nextjs.org/docs"
             title="Next.js公式ドキュメント"
             description="Next.jsの公式ドキュメントを確認"
