@@ -27,7 +27,7 @@
 - `tsconfig.json` に `@/*` エイリアスあり  
 - `next.config.ts` が存在
 
-## tips
+## tips ✅
 - Windowsの場合、改行コードがCRLFになるため、ルート直下に.gitattributesを作成し、改行コードの設定を入れておく
 `git add . --renormalize`で反映
 ```
