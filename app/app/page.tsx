@@ -19,7 +19,7 @@ export default function Home() {
           <LinkCard
             href="/dataList"
             title="データリスト"
-            description="データ一覧を表示するサンプルページ"
+            description="データを一覧表示"
           />
           <LinkCard
             href="https://nextjs.org/docs"
