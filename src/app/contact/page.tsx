@@ -157,7 +157,7 @@ export default function ContactPage() {
                 if (validate()) setStep("confirm");
               }}
             >
-              確認へ
+              入力内容の確認
             </FormButton>
           </form>
         )}
