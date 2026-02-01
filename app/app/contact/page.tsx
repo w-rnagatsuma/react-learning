@@ -25,11 +25,31 @@ const initialForm: ContactForm = {
 export default function ContactPage() {
   const [step, setStep] = useState<Step>("input");
   const [form, setForm] = useState<ContactForm>(initialForm);
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactForm, string>>>(
+    {}
+  );
 
   const updateField = (key: keyof ContactForm) =>
     (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setForm((prev) => ({ ...prev, [key]: e.target.value }));
+      setErrors((prev) => ({ ...prev, [key]: undefined }));
     };
+
+  const validate = () => {
+    const nextErrors: Partial<Record<keyof ContactForm, string>> = {};
+
+    if (!form.lastName.trim()) nextErrors.lastName = "姓を入力してください";
+    if (!form.firstName.trim()) nextErrors.firstName = "名を入力してください";
+    if (!form.email.trim()) {
+      nextErrors.email = "メールアドレスを入力してください";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      nextErrors.email = "メールアドレスの形式が正しくありません";
+    }
+    if (!form.message.trim()) nextErrors.message = "お問い合わせ内容を入力してください";
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
@@ -91,14 +111,21 @@ export default function ContactPage() {
                   placeholder="姓（山田）"
                   value={form.lastName}
                   onChange={updateField("lastName")}
+                  className={errors.lastName ? "border-red-500" : undefined}
                 />
                 <FormInput
                   type="text"
                   placeholder="名（太郎）"
                   value={form.firstName}
                   onChange={updateField("firstName")}
+                  className={errors.firstName ? "border-red-500" : undefined}
                 />
               </div>
+              {(errors.lastName || errors.firstName) && (
+                <p className="text-sm text-red-600">
+                  {errors.lastName || errors.firstName}
+                </p>
+              )}
             </fieldset>
             <label className="flex flex-col gap-2">
               <span className="text-sm font-medium">メールアドレス</span>
@@ -107,7 +134,11 @@ export default function ContactPage() {
                 placeholder="example@example.com"
                 value={form.email}
                 onChange={updateField("email")}
+                className={errors.email ? "border-red-500" : undefined}
               />
+              {errors.email && (
+                <p className="text-sm text-red-600">{errors.email}</p>
+              )}
             </label>
             <label className="flex flex-col gap-2">
               <span className="text-sm font-medium">お問い合わせ内容</span>
@@ -115,9 +146,19 @@ export default function ContactPage() {
                 placeholder="内容を入力してください"
                 value={form.message}
                 onChange={updateField("message")}
+                className={errors.message ? "border-red-500" : undefined}
               />
+              {errors.message && (
+                <p className="text-sm text-red-600">{errors.message}</p>
+              )}
             </label>
-            <FormButton onClick={() => setStep("confirm")}>確認へ</FormButton>
+            <FormButton
+              onClick={() => {
+                if (validate()) setStep("confirm");
+              }}
+            >
+              確認へ
+            </FormButton>
           </form>
         )}
 
