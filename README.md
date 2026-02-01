@@ -52,14 +52,6 @@
 <!-- - [ ] フォーム管理導入（React Hook Form） -->
 <!-- - [ ] バリデーション導入（Zod） -->
 
-<<<<<<< Updated upstream
-## tips
-- Windowsの場合、改行コードがCRLFになるため、ルート直下に.gitattributesを作成し、改行コードの設定を入れておく
-`git add . --renormalize`で反映
-```
-* text=auto eol=lf
-```
-=======
 ### BFFを作る（まずNext内 → 次にAWS）
 - [ ] BFFをNext内で実装（`app/api` で外部APIを叩いて返す。Route Handler）
 <!-- - [ ] APIレスポンスの型安全化（response schemaチェック。Zod） -->
@@ -78,4 +70,3 @@
   ```
   * text=auto eol=lf
   ```
->>>>>>> Stashed changes
