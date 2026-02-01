@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useState, type ChangeEvent } from "react";
-import FormInput from "../components/FormInput";
-import FormTextarea from "../components/FormTextarea";
-import FormButton from "../components/FormButton";
+import FormInput from "@/components/ui/FormInput";
+import FormTextarea from "@/components/ui/FormTextarea";
+import FormButton from "@/components/ui/FormButton";
 
 type Step = "input" | "confirm" | "complete";
 
