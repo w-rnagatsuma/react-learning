@@ -1,4 +1,7 @@
 import Link from "next/link";
+import FormInput from "../components/FormInput";
+import FormTextarea from "../components/FormTextarea";
+import FormButton from "../components/FormButton";
 
 export default function ContactPage() {
   return (
@@ -12,39 +15,19 @@ export default function ContactPage() {
           <fieldset className="flex flex-col gap-2">
             <legend className="text-sm font-medium">お名前</legend>
             <div className="grid grid-cols-2 gap-3">
-              <input
-                type="text"
-                placeholder="姓（山田）"
-                className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800"
-              />
-              <input
-                type="text"
-                placeholder="名（太郎）"
-                className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800"
-              />
+              <FormInput type="text" placeholder="姓（山田）" />
+              <FormInput type="text" placeholder="名（太郎）" />
             </div>
           </fieldset>
           <label className="flex flex-col gap-2">
             <span className="text-sm font-medium">メールアドレス</span>
-            <input
-              type="email"
-              placeholder="example@example.com"
-              className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800"
-            />
+            <FormInput type="email" placeholder="example@example.com" />
           </label>
           <label className="flex flex-col gap-2">
             <span className="text-sm font-medium">お問い合わせ内容</span>
-            <textarea
-              placeholder="内容を入力してください"
-              className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 min-h-[140px]"
-            />
+            <FormTextarea placeholder="内容を入力してください" />
           </label>
-          <button
-            type="button"
-            className="mt-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            送信
-          </button>
+          <FormButton>送信</FormButton>
         </form>
         <div className="mt-8 text-center">
           <Link
