@@ -12,16 +12,16 @@ export default function Home() {
         </p>
         <nav className="flex flex-col gap-3 w-full">
           <LinkCard
-            href="https://nextjs.org/docs"
-            title="ドキュメント"
-            description="Next.jsの公式ドキュメントを確認"
-          />
-          <LinkCard
-            href="https://nextjs.org/learn"
+            href="/contact"
             title="問い合わせフォーム"
             description="質問や問い合わせはこちら"
           />
-          and more...
+          <LinkCard
+            href="https://nextjs.org/docs"
+            title="Next.js公式ドキュメント"
+            description="Next.jsの公式ドキュメントを確認"
+            isExternal
+          />
         </nav>
       </section>
     </main>
