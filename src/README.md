@@ -24,6 +24,7 @@ src/
 `@/` でsrc/ディレクトリを参照可能
 
 例：
+
 ```typescript
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';

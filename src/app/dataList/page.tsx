@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useState, useMemo } from "react";
+import Link from 'next/link';
+import { useState, useMemo } from 'react';
 
 type DataItem = {
   id: number;
@@ -11,59 +11,56 @@ type DataItem = {
   status: string;
 };
 
-type SortKey = "name" | "category" | "price" | "status";
+type SortKey = 'name' | 'category' | 'price' | 'status';
 
 const sampleData: DataItem[] = [
-  { id: 1, name: "商品A", category: "電子機器", price: "¥12,800", status: "在庫あり" },
-  { id: 2, name: "商品B", category: "書籍", price: "¥2,400", status: "在庫わずか" },
-  { id: 3, name: "商品C", category: "電子機器", price: "¥45,000", status: "在庫あり" },
-  { id: 4, name: "商品D", category: "衣類", price: "¥5,600", status: "売り切れ" },
-  { id: 5, name: "商品E", category: "書籍", price: "¥1,800", status: "在庫あり" },
-  { id: 6, name: "商品F", category: "食品", price: "¥980", status: "在庫あり" },
-  { id: 7, name: "商品G", category: "家具", price: "¥22,000", status: "在庫わずか" },
-  { id: 8, name: "商品H", category: "日用品", price: "¥1,200", status: "在庫あり" },
-  { id: 9, name: "商品I", category: "スポーツ", price: "¥8,900", status: "売り切れ" },
-  { id: 10, name: "商品J", category: "電子機器", price: "¥19,800", status: "在庫あり" },
-  { id: 11, name: "商品K", category: "書籍", price: "¥3,200", status: "在庫あり" },
-  { id: 12, name: "商品L", category: "衣類", price: "¥4,300", status: "在庫わずか" },
-  { id: 13, name: "商品M", category: "食品", price: "¥650", status: "在庫あり" },
-  { id: 14, name: "商品N", category: "家具", price: "¥35,000", status: "在庫あり" },
-  { id: 15, name: "商品O", category: "日用品", price: "¥780", status: "在庫あり" },
-  { id: 16, name: "商品P", category: "スポーツ", price: "¥12,500", status: "在庫わずか" },
-  { id: 17, name: "商品Q", category: "電子機器", price: "¥68,000", status: "売り切れ" },
-  { id: 18, name: "商品R", category: "書籍", price: "¥1,500", status: "在庫あり" },
-  { id: 19, name: "商品S", category: "衣類", price: "¥6,200", status: "在庫あり" },
-  { id: 20, name: "商品T", category: "食品", price: "¥1,050", status: "在庫わずか" },
-  { id: 21, name: "商品U", category: "家具", price: "¥28,500", status: "在庫あり" },
-  { id: 22, name: "商品V", category: "日用品", price: "¥540", status: "在庫あり" },
-  { id: 23, name: "商品W", category: "スポーツ", price: "¥3,800", status: "売り切れ" },
-  { id: 24, name: "商品X", category: "電子機器", price: "¥9,900", status: "在庫あり" },
-  { id: 25, name: "商品Y", category: "書籍", price: "¥2,950", status: "在庫わずか" },
-  { id: 26, name: "商品Z", category: "衣類", price: "¥7,400", status: "在庫あり" },
+  { id: 1, name: '商品A', category: '電子機器', price: '¥12,800', status: '在庫あり' },
+  { id: 2, name: '商品B', category: '書籍', price: '¥2,400', status: '在庫わずか' },
+  { id: 3, name: '商品C', category: '電子機器', price: '¥45,000', status: '在庫あり' },
+  { id: 4, name: '商品D', category: '衣類', price: '¥5,600', status: '売り切れ' },
+  { id: 5, name: '商品E', category: '書籍', price: '¥1,800', status: '在庫あり' },
+  { id: 6, name: '商品F', category: '食品', price: '¥980', status: '在庫あり' },
+  { id: 7, name: '商品G', category: '家具', price: '¥22,000', status: '在庫わずか' },
+  { id: 8, name: '商品H', category: '日用品', price: '¥1,200', status: '在庫あり' },
+  { id: 9, name: '商品I', category: 'スポーツ', price: '¥8,900', status: '売り切れ' },
+  { id: 10, name: '商品J', category: '電子機器', price: '¥19,800', status: '在庫あり' },
+  { id: 11, name: '商品K', category: '書籍', price: '¥3,200', status: '在庫あり' },
+  { id: 12, name: '商品L', category: '衣類', price: '¥4,300', status: '在庫わずか' },
+  { id: 13, name: '商品M', category: '食品', price: '¥650', status: '在庫あり' },
+  { id: 14, name: '商品N', category: '家具', price: '¥35,000', status: '在庫あり' },
+  { id: 15, name: '商品O', category: '日用品', price: '¥780', status: '在庫あり' },
+  { id: 16, name: '商品P', category: 'スポーツ', price: '¥12,500', status: '在庫わずか' },
+  { id: 17, name: '商品Q', category: '電子機器', price: '¥68,000', status: '売り切れ' },
+  { id: 18, name: '商品R', category: '書籍', price: '¥1,500', status: '在庫あり' },
+  { id: 19, name: '商品S', category: '衣類', price: '¥6,200', status: '在庫あり' },
+  { id: 20, name: '商品T', category: '食品', price: '¥1,050', status: '在庫わずか' },
+  { id: 21, name: '商品U', category: '家具', price: '¥28,500', status: '在庫あり' },
+  { id: 22, name: '商品V', category: '日用品', price: '¥540', status: '在庫あり' },
+  { id: 23, name: '商品W', category: 'スポーツ', price: '¥3,800', status: '売り切れ' },
+  { id: 24, name: '商品X', category: '電子機器', price: '¥9,900', status: '在庫あり' },
+  { id: 25, name: '商品Y', category: '書籍', price: '¥2,950', status: '在庫わずか' },
+  { id: 26, name: '商品Z', category: '衣類', price: '¥7,400', status: '在庫あり' },
 ];
 
 export default function DataListPage() {
   const [selectedItem, setSelectedItem] = useState<DataItem | null>(null);
-  const [sortKey, setSortKey] = useState<SortKey>("name");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const [filterCategory, setFilterCategory] = useState<string>("all");
-  const [filterStatus, setFilterStatus] = useState<string>("all");
+  const [sortKey, setSortKey] = useState<SortKey>('name');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [filterCategory, setFilterCategory] = useState<string>('all');
+  const [filterStatus, setFilterStatus] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const categories = useMemo(
     () => Array.from(new Set(sampleData.map((item) => item.category))),
-    []
+    [],
   );
-  const statuses = useMemo(
-    () => Array.from(new Set(sampleData.map((item) => item.status))),
-    []
-  );
+  const statuses = useMemo(() => Array.from(new Set(sampleData.map((item) => item.status))), []);
 
   const filteredData = useMemo(() => {
     return sampleData.filter((item) => {
-      const categoryMatch = filterCategory === "all" || item.category === filterCategory;
-      const statusMatch = filterStatus === "all" || item.status === filterStatus;
+      const categoryMatch = filterCategory === 'all' || item.category === filterCategory;
+      const statusMatch = filterStatus === 'all' || item.status === filterStatus;
       return categoryMatch && statusMatch;
     });
   }, [filterCategory, filterStatus]);
@@ -74,13 +71,13 @@ export default function DataListPage() {
       let bValue: string | number = b[sortKey];
 
       // 価格の場合は数値として比較
-      if (sortKey === "price") {
-        aValue = parseInt(a.price.replace(/[¥,]/g, ""));
-        bValue = parseInt(b.price.replace(/[¥,]/g, ""));
+      if (sortKey === 'price') {
+        aValue = parseInt(a.price.replace(/[¥,]/g, ''));
+        bValue = parseInt(b.price.replace(/[¥,]/g, ''));
       }
 
-      if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
-      if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
+      if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+      if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
       return 0;
     });
     return sorted;
@@ -98,11 +95,11 @@ export default function DataListPage() {
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
       setCurrentPage(1);
     } else {
       setSortKey(key);
-      setSortOrder("asc");
+      setSortOrder('asc');
       setCurrentPage(1);
     }
   };
@@ -155,8 +152,8 @@ export default function DataListPage() {
           <button
             type="button"
             onClick={() => {
-              setFilterCategory("all");
-              setFilterStatus("all");
+              setFilterCategory('all');
+              setFilterStatus('all');
               setCurrentPage(1);
             }}
             className="px-3 py-2 rounded-lg text-sm border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -168,44 +165,44 @@ export default function DataListPage() {
         <div className="flex flex-col gap-4 mb-6 lg:flex-row lg:items-center lg:justify-between">
           <nav className="flex gap-2 justify-center flex-wrap lg:justify-start">
             <button
-              onClick={() => handleSort("name")}
+              onClick={() => handleSort('name')}
               className={`px-4 py-2 rounded-lg border transition-colors ${
-                sortKey === "name"
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                sortKey === 'name'
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
-              商品名 {sortKey === "name" && (sortOrder === "asc" ? "↑" : "↓")}
+              商品名 {sortKey === 'name' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
             <button
-              onClick={() => handleSort("category")}
+              onClick={() => handleSort('category')}
               className={`px-4 py-2 rounded-lg border transition-colors ${
-                sortKey === "category"
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                sortKey === 'category'
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
-              カテゴリ {sortKey === "category" && (sortOrder === "asc" ? "↑" : "↓")}
+              カテゴリ {sortKey === 'category' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
             <button
-              onClick={() => handleSort("price")}
+              onClick={() => handleSort('price')}
               className={`px-4 py-2 rounded-lg border transition-colors ${
-                sortKey === "price"
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                sortKey === 'price'
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
-              価格 {sortKey === "price" && (sortOrder === "asc" ? "↑" : "↓")}
+              価格 {sortKey === 'price' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
             <button
-              onClick={() => handleSort("status")}
+              onClick={() => handleSort('status')}
               className={`px-4 py-2 rounded-lg border transition-colors ${
-                sortKey === "status"
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                sortKey === 'status'
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
-              在庫状況 {sortKey === "status" && (sortOrder === "asc" ? "↑" : "↓")}
+              在庫状況 {sortKey === 'status' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
           </nav>
 
@@ -216,8 +213,8 @@ export default function DataListPage() {
               disabled={currentPage === 1}
               className={`px-3 py-2 rounded-lg border transition-colors ${
                 currentPage === 1
-                  ? "text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                  ? 'text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800'
+                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
               前へ
@@ -234,8 +231,8 @@ export default function DataListPage() {
               disabled={currentPage === totalPages}
               className={`px-3 py-2 rounded-lg border transition-colors ${
                 currentPage === totalPages
-                  ? "text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                  ? 'text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800'
+                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
               次へ
@@ -252,13 +249,15 @@ export default function DataListPage() {
               <article className="flex flex-col gap-2">
                 <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
                   <span>カテゴリ: {item.category}</span>
-                  <span className={
-                    item.status === "在庫あり" 
-                      ? "text-green-600 dark:text-green-400" 
-                      : item.status === "在庫わずか"
-                      ? "text-orange-600 dark:text-orange-400"
-                      : "text-red-600 dark:text-red-400"
-                  }>
+                  <span
+                    className={
+                      item.status === '在庫あり'
+                        ? 'text-green-600 dark:text-green-400'
+                        : item.status === '在庫わずか'
+                          ? 'text-orange-600 dark:text-orange-400'
+                          : 'text-red-600 dark:text-red-400'
+                    }
+                  >
                     {item.status}
                   </span>
                 </div>
@@ -291,8 +290,8 @@ export default function DataListPage() {
             disabled={currentPage === 1}
             className={`px-3 py-2 rounded-lg border transition-colors ${
               currentPage === 1
-                ? "text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
-                : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                ? 'text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800'
+                : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
             }`}
           >
             前へ
@@ -309,8 +308,8 @@ export default function DataListPage() {
             disabled={currentPage === totalPages}
             className={`px-3 py-2 rounded-lg border transition-colors ${
               currentPage === totalPages
-                ? "text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
-                : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                ? 'text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800'
+                : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
             }`}
           >
             次へ
@@ -333,7 +332,12 @@ export default function DataListPage() {
                   className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </header>
@@ -348,17 +352,21 @@ export default function DataListPage() {
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">価格</dt>
-                  <dd className="mt-1 text-lg font-bold text-blue-600 dark:text-blue-400">{selectedItem.price}</dd>
+                  <dd className="mt-1 text-lg font-bold text-blue-600 dark:text-blue-400">
+                    {selectedItem.price}
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">在庫状況</dt>
-                  <dd className={`mt-1 text-lg font-medium ${
-                    selectedItem.status === "在庫あり" 
-                      ? "text-green-600 dark:text-green-400" 
-                      : selectedItem.status === "在庫わずか"
-                      ? "text-orange-600 dark:text-orange-400"
-                      : "text-red-600 dark:text-red-400"
-                  }`}>
+                  <dd
+                    className={`mt-1 text-lg font-medium ${
+                      selectedItem.status === '在庫あり'
+                        ? 'text-green-600 dark:text-green-400'
+                        : selectedItem.status === '在庫わずか'
+                          ? 'text-orange-600 dark:text-orange-400'
+                          : 'text-red-600 dark:text-red-400'
+                    }`}
+                  >
                     {selectedItem.status}
                   </dd>
                 </div>
@@ -373,12 +381,7 @@ export default function DataListPage() {
             className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
             <span className="inline-flex items-center gap-2">
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path
                   d="M15 18l-6-6 6-6"
                   strokeLinecap="round"
