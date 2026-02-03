@@ -15,10 +15,23 @@
   - PostCSS
   - グローバル CSS: `app/globals.css`
 - **Lint / 型定義 / 開発ツール**
-  - ESLint
-  - eslint-config-next
+  - ESLint（品質チェック）
+    - `eslint-config-next/core-web-vitals`
+    - `eslint-config-next/typescript`
+    - 実行: `npm run lint`
+  - Prettier（整形）
+    - `eslint-config-prettier`
+    - 実行: `npm run format`
+    - 衝突回避のため`eslint-config-prettier`を選択
+      - [!NOTE] ESLint と Prettier が同じ箇所を別ルールで直して “ケンカ” するのを防ぐ
+  - pre-commit（Git hooks）
+    - `husky`: Git hooksの管理
+    - `lint-staged`: ステージングされたファイルだけに実行
+    - 実行：コミット前に ESLint / Prettier を自動実行
 - **フォント**
-  - next/font/google（`Geist`, `Geist_Mono`）
+  - next/font/google
+    - `Geist`
+    - `Geist_Mono`
 - **備考**
   - `tsconfig.json` に `@/*` エイリアスあり
   - `next.config.ts`
