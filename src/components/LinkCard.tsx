@@ -5,14 +5,13 @@ type LinkCardProps = {
   isExternal?: boolean;
 };
 
-const baseClassName =
-  "w-full px-6 py-4 border rounded-lg transition-colors text-left";
+const baseClassName = 'w-full px-6 py-4 border rounded-lg transition-colors text-left';
 
 const internalClassName =
-  "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700";
+  'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700';
 
 const externalClassName =
-  "bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900";
+  'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900';
 
 function ExternalIcon() {
   return (
@@ -32,19 +31,13 @@ function ExternalIcon() {
   );
 }
 
-export default function LinkCard({
-  href,
-  title,
-  description,
-  isExternal = false,
-}: LinkCardProps) {
-  const className =
-    baseClassName + " " + (isExternal ? externalClassName : internalClassName);
+export default function LinkCard({ href, title, description, isExternal = false }: LinkCardProps) {
+  const className = baseClassName + ' ' + (isExternal ? externalClassName : internalClassName);
 
   return (
     <a
       href={href}
-      {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
+      {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
       className={className}
     >
       <h2 className="text-lg font-semibold mb-1 flex items-center gap-2">
