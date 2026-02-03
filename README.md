@@ -37,6 +37,7 @@
 - [ ] UT追加（Vitest または Jest）
 - [ ] E2E追加（Playwright）
 - [ ] CI導入（GitHub Actions：lint / test / build）
+- [ ] 生成AI利用（テスト, レビュー等）
 
 ### Next.jsを一通り触る
 - [ ] ルーティング追加（App Router、動的ルート）
